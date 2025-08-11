@@ -1,4 +1,7 @@
 # MOIDA - 모임 플랫폼
+## 안녕하세요 이기정입니다. 
+ - **세미프로젝트 팀모이다에서 공지사항게시판과 문의답변 기능을 담당했습니다**
+ - **단단한 기본기에 충실한 베이스가 되는 CRUD게시판과 궁금증을 해소해줄수있는 문의와 답변기능을 담당했습니다 :D**
 
 [![Deploy](https://img.shields.io/badge/Demo-Live-green)](https://moida-spring-boot.onrender.com)
 
@@ -9,10 +12,6 @@
 <img width="1215" height="695" alt="image" src="https://github.com/user-attachments/assets/2fb6b2c8-0cfc-40a1-bddc-4276c8011877" />
 <img width="1186" height="638" alt="image" src="https://github.com/user-attachments/assets/f624788b-5837-49cc-887f-c79aaf3e4185" />
 <img width="1690" height="912" alt="모이다ERD" src="https://github.com/user-attachments/assets/7ba58f87-59f5-426c-ae9e-680d52e4d030" />
-
-## 안녕하세요 이기정입니다. 
- - **세미프로젝트 팀모이다에서 공지사항게시판과 문의답변 기능을 담당했습니다**
- - **단단한 기본기에 충실한 베이스가 되는 CRUD게시판과 궁금증을 해소해줄수있는 문의와 답변기능을 담당했습니다 :D**
 
 ---
 

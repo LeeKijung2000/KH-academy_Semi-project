@@ -1,0 +1,216 @@
+.review-write-main-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 필요 시 세로 중앙도 가능 */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.review-title-box{
+	color: rgba(247, 145, 1, 0.63);
+	font-size:25px;
+	font-weight:500;
+	margin-top:70px;
+	margin-bottom:20px;
+}
+.review-title-box #reviewTitle{
+	margin-left:5px;
+	border: 4px solid rgba(247, 145, 1, 0.63);
+	border-radius: 16px;
+	width:300px;
+	height:30px;
+}
+
+.review-title-box #reviewTitle:focus{
+	outline:none;
+}
+/* 이미지 삭제영역*/
+.review-image-delete {
+    display: inline-flex;
+    justify-content: left;
+    align-items: center;
+    border-style: none;
+    margin: 10px;
+    padding: 10px 10px;
+}
+
+/* 파일삭제 (배열, file-tag 클래스 만들어서 관리) */
+.file-tag {
+    font-size: 20px;
+    margin-left: 5px;
+    margin-top: 2px;
+    color: rgba(115, 114, 114, 0.894);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+}
+
+
+/* 후기작성칸 */
+#reviewEditContent {
+    resize: none;
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    border: 4px solid rgba(247, 145, 1, 0.63);
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 18px;
+    overflow-y: auto;
+
+
+}
+
+/* 후기작성칸 클릭시 테두리없앰 */
+#reviewEditContent:focus {
+    outline: none;
+}
+
+/* 이미지업로드(아이콘, 글자) */
+.review-image-upload {
+    display: inline-flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+#imageUpload{
+    display: none;
+}
+.image-text:hover{
+    cursor: pointer;
+}
+.review-image-upload:hover {
+    cursor: pointer;
+}
+
+/* 이미지업로드 글자 */
+.image-text {
+    font-size: 18px;
+}
+
+/* 별점wrapper */
+.review-edit-rating-stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 190px;
+    width: 100%;
+    font-size: 60px;
+
+}
+
+/* 리뷰 등록,취소버튼 */
+.review-button-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.review-enroll-Button,
+.review-cancel-Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    border-radius: 20px;
+    background-color: #f29201e2;
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px 20px;
+    font-family: 'RiaSans-ExtraBold';
+
+
+}
+
+.review-enroll-Button:hover {
+    background-color: #f29101;
+    cursor: pointer;
+}
+
+.review-cancel-Button:hover {
+    background-color: #f29101;
+    cursor: pointer;
+}
+
+
+.review-edit-stars {
+    display: flex;
+    gap: 6px;
+    cursor: pointer;
+    font-size:50px;
+    
+}
+
+.star i {
+    color: #f29101;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.star.active i, .star:hover i {
+    color: #f29101;
+    transform: scale(1.2); /* 클릭 시 별 확대 효과 */
+}
+
+
+@media screen and (max-width: 768px) {
+   .review-title-box{
+	width:100%;
+	font-size:100%;
+}
+    .review-write-title {
+        display: block;
+        font-size: 100%;
+    }
+
+    .review-button-box {
+        display: flex;
+        font-size: 90%;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    #reviewEditContent {
+        width: 100%;
+        height: 200px;
+    }
+
+    .review-image-upload {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .review-edit-rating-stars {
+        margin-top: 300px;
+        overflow-y: hidden;
+    }
+
+    #imageUploadIcon {
+        font-size: 50%;
+    }
+
+    .image-text {
+        font-size: 60%;
+    }
+
+    .review-image-delete {
+        display: inline-flex;
+        justify-content: flex-start;
+    }
+
+    .file-tag {
+        font-size: 110%;
+    }
+
+    .delete-btn {
+        font-size: 120%;
+    }
+}

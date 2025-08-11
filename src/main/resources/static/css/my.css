@@ -1,0 +1,216 @@
+.my-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.my-container > .my-left-container {
+    width: 200px;
+}
+
+.my-container > .my-left-container > .my-menuBox {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-container > .my-left-container > .my-menuBox > a {
+    padding: 15px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.my-container > .my-left-container > .my-menuBox > a:last-child {
+    border-bottom: none;
+}
+
+.my-container > .my-right-container {
+    flex-grow: 1;
+}
+
+.my-right-container > .my-info-inputBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.my-right-container > .my-info-inputBox > label {
+    font-size: 0.9rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.my-right-container > .my-info-inputBox > label > .main-sign-postDiv {
+    display: flex;
+    gap: 5px;
+}
+
+.my-right-container > .my-info-inputBox > label > .main-sign-postDiv > button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.my-right-container > .my-info-inputBox > label input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.my-right-container > .my-info-inputBox > label > select {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.my-right-container > button {
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #FFA600;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.my-right-container .my-moim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.my-right-container .my-moim-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.my-right-container .my-moim-item img {
+    width: 160px;
+    height: 114px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.my-right-container .my-moim-item .my-moim-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.my-right-container .my-moim-item .my-moim-info .my-moim-date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.my-moim-date i {
+    margin-top: -4px;
+}
+
+.my-right-container .my-moim-item .my-moim-func {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.my-right-container .my-moim-item .my-moim-func button {
+    width: 100%;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 5px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.my-right-container .my-moim-item .my-moim-func button.view-button {
+    background-color: var(--main-color);
+}
+
+.my-right-container .my-moim-item .my-moim-func button.modify-button {
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+    color: inherit;
+}
+
+.my-right-container .my-moim-item .my-moim-func button.cancel-button {
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
+}
+
+.my-right-container .my-moim-item .my-moim-func button.review-write-button {
+    background-color: transparent;
+    border: 1px solid  #FFA600;
+    color:  #FFA600;
+}
+.review-write-button{
+	margin-top:10px;
+}
+
+.my-right-container .my-moim-item .my-moim-func button:disabled:not(.review-write-button) {
+    background-color: #ccc;
+    border: none;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+@media(max-width: 42rem) {
+    .my-container > .my-left-container {
+        display: none;
+    }
+}
+
+@media(max-width: 30rem) {
+    .my-moim-list {
+        gap: 50px !important;
+    }
+    .my-moim-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .my-moim-item img {
+        width: 100% !important;
+        height: 240px !important;
+    }
+
+    .my-moim-func {
+        width: 100% !important;
+    }
+}

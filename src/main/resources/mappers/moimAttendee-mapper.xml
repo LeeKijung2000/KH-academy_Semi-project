@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.kh.moida.mapper.MoimAttendeeMapper">
+ 	<select id="searchMoimAttendee" parameterType="map" resultType="java.lang.Integer">
+ 		SELECT
+			COUNT(*)
+ 		FROM
+			MOIM_ATTENDEE
+ 		WHERE
+			USER_ID = #{userId} AND MOIM_ID = #{moimId}
+ 	</select>
+	<select id="findMoimAttendee" resultType="com.kh.moida.dto.MoimAttendeeWithUser">
+		SELECT
+			A.USER_ID,
+			A.MOIM_ID,
+			A.ATT_DATE,
+			U.USERNAME,
+			U.NAME,
+			U.PHONE,
+			U.EMAIL
+		FROM
+			MOIM_ATTENDEE A
+		JOIN USERS U ON A.USER_ID = U.USER_ID
+		WHERE
+			A.MOIM_ID = #{moimId}
+	</select>
+	<select id="isMoimAttendee" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			MOIM_ATTENDEE
+		WHERE
+			MOIM_ID = #{moimId} AND USER_ID = #{userId}
+	</select>
+
+	<insert id="joinMoim">
+ 		 INSERT INTO
+		 	MOIM_ATTENDEE VALUES (
+		 	#{userId},
+		 	#{moimId},
+		 	SYSDATE
+ 		 )
+ 	</insert>
+
+ 	<delete id="joinMoimCancel">
+    	DELETE
+			FROM
+		MOIM_ATTENDEE
+    	WHERE
+			MOIM_ID = #{moimId} AND USER_ID = #{userId}
+    </delete>
+ </mapper>

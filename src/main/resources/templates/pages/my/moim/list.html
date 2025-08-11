@@ -1,0 +1,77 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="my-container">
+        <div class="my-left-container" th:replace="~{fragments/myLeft :: myLeft}"></div>
+        <div class="my-right-container">
+            <div class="subTitle" style="margin-bottom: 30px;">
+                <th:block th:if="${type == 'hosted'}">나의 개설 모임</th:block>
+                <th:block th:if="${type == 'joined'}">나의 참가 모임</th:block>
+            </div>
+
+            <div th:if="${#lists.isEmpty(moimList)}" class="empty-container">
+                <i class="ti ti-hexagon-minus empty-icon"></i> 아직 연관된 모임이 없어요!
+
+            </div>
+            <div class="my-moim-list">
+                <div class="my-moim-item" th:each="m : ${moimList}">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${m.fileConvert})}" alt="모임이미지"/>
+                    <div class="my-moim-info">
+                        <div class="my-moim-title" th:text="${m.moimTitle}"></div>
+                        <div class="my-moim-date">
+                            <i class="ti ti-calendar-week"></i>
+                            <div th:text="${#dates.format(m.moimDate, 'yy.MM.dd(E) a hh:mm')}"></div>
+                        </div>
+                        <div class="my-moim-location" th:text="${m.moimAddress1}"></div>
+                        <div class="my-moim-attendee" th:text="${'모집인원 : ' + m.moimAttendeeCount + '명'}"></div>
+                    </div>
+                    <div class="my-moim-func">
+                        <button th:if="${type == 'hosted'}" th:onclick="|showAttendeeListModal(${m.moimId})|"
+                                class="view-button">
+                            참가자 확인
+                        </button>
+                        <a th:if="${type == 'hosted'}"
+                           th:href="@{/moim/modify/{moimId}(moimId=${m.moimId})}">
+                            <button class="modify-button"
+                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                수정
+                            </button>
+                        </a>
+                        <button
+                            th:if="${type == 'hosted'}" 
+                            class="cancel-button"
+                            th:onclick="|cancelMoim(${m.moimId})|"
+                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                모임삭제
+                        </button>
+
+                        <a class="cancel-button">
+                            <button th:if="${type == 'joined'}" class="cancel-button"
+                                    data-context="mypage" th:data-moim-id="${m.moimId}"
+                                    th:onclick="@{|cancelMoimAttendee(${m.moimId})|}"
+                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                참가취소
+                            </button>
+                         </a>
+                    	 <a th:if="${type == 'joined'}" class="modify-button"
+                    	 	th:href="@{|/review/write/${m.moimId}|}">
+                            <button class="review-write-button">
+					       		후기 쓰기
+					    	</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${!#lists.isEmpty(moimList)}">
+                <div th:replace="fragments/pagination :: pagination(${page}, ${size}, ${totalCount}, ${baseUrl})"></div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

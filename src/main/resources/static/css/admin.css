@@ -1,0 +1,276 @@
+.admin-table {
+    width: 100%;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+.admin-table thead {
+    border-top: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.admin-table tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-button-confirm {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-category-table {
+    width: 100%;
+}
+
+.admin-category-table > thead > tr {
+    padding: 10px 0;
+    color: black;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-category-table > thead > tr > th {
+    padding: 10px;
+}
+
+.admin-category-table > tbody > tr {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-category-table th {
+    vertical-align: middle;
+}
+
+.admin-category-table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+td.cell-center {
+    text-align: center;
+}
+
+td.icon-cell {
+    box-sizing: border-box;
+}
+
+td.icon-cell > .category-iconBox {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+td.func-cell {
+    vertical-align: middle;
+}
+
+td.func-cell > .admin-table-funcBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+td.func-cell > .admin-table-funcBox button {
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+td.func-cell > .admin-table-funcBox button:hover {
+    color: var(--main-color);
+}
+
+.admin-inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.admin-inputBox label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.admin-inputBox input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.admin-inputBox > .admin-inputColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-originFileBox {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.admin-originFileBox span {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+.admin-originFileBox button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-updateFileBox {
+    display: none;
+}
+
+.modal-confirmCategoryDelete-body {
+    font-size: 1.2rem;
+    padding: 50px;
+    text-align: center;
+}
+
+.modal-confirmCategoryDelete-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-confirmCategoryDelete-footer button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.modal-confirmCategoryDelete-footer button.confirm {
+    background-color: green;
+    border: none;
+    color: white;
+}
+
+.modal-confirmCategoryDelete-footer button.cancel {
+    border: 1px solid red;
+    background-color: transparent;
+    color: red;
+}
+
+.my-moim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.my-moim-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.my-moim-item img {
+    width: 160px;
+    height: 114px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.my-moim-item .my-moim-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.my-moim-item .my-moim-info .my-moim-date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.my-moim-date i {
+    margin-top: -4px;
+}
+
+.my-moim-item .my-moim-func {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.my-moim-item .my-moim-func button {
+    width: 100%;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 5px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.my-moim-item .my-moim-func button.view-button {
+    background-color: var(--main-color);
+}
+
+.my-moim-item .my-moim-func button.modify-button {
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+    color: inherit;
+}
+
+.my-moim-item .my-moim-func button.cancel-button {
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
+}
+
+.my-moim-item .my-moim-func button.review-write-button {
+    background-color: transparent;
+    border: 1px solid  #FFA600;
+    color:  #FFA600;
+}
+
+.my-moim-item .my-moim-func button:disabled:not(.review-write-button) {
+    background-color: #ccc;
+    border: none;
+    color: #aaa;
+    cursor: not-allowed;
+}

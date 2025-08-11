@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}" lang="ko">
+<body>
+<main class="main-wrapper" layout:fragment="content">
+    <div class="main-anchor-container">
+        <div class="moim-detail-container">
+            <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"
+                 alt="모임메인사진"/>
+
+            <div class="moim-detail-sectionBox">
+                <div class="subTitle" style="display: flex; justify-content: space-between; align-items: center;">
+                    참여자 후기
+                    <div class="moimAvgRate">
+                    	<div th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></div>
+                    	<div th:unless="${avgRating > 0}">(0)</div>
+                    </div>
+                    <a th:href="@{|/review/detail/${moim.moimId}|}" class="moim-detail-sectionTitleSub">
+                        <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기</a>
+                </div>
+                <div class="moim-detail-review-container">
+                    <div class="review-item" th:each="r : ${reviewList}">
+                        <div class="review-column">
+                            <div class="moim-detail-reviewWriter">[[${r.username}]]</div>
+                            <div class="user-star">
+                                <span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star"
+                                      data-value="${i}">
+                                    <i class="ti ti-carambola-filled"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="review-column">
+                            <div class="moim-detail-reviewContent">
+                                [[${r.reviewContent}]]
+                            </div>
+                        </div>
+                        <div class="moim-detail-reviewButtonBox">
+                            <a th:href="@{|/review/detail/${moim.moimId}|}">
+                                <button class="more-btn">...더보기</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--review container-->
+
+            <div class="moim-detail-sectionBox">
+                <div class="subTitle">
+                    상세정보
+                </div>
+                <div class="moim-detail-content" th:text="${moim.moimContent}"></div>
+            </div>
+
+            <!--moimInfo-->
+            <div class="moim-detail-sectionBox">
+                <div class="subTitle">
+                    호스트 소개
+                </div>
+                <div class="moim-detail-hostContent" th:text="${moim.moimHostIntro}"></div>
+            </div>
+
+            <!-- 문의창 -->
+            <section class="question-section py-5" style="margin-top: 80px;">
+                <div class="container question-container-wide">
+
+                    <!-- 문의 작성 폼 -->
+                    <form class="question-form shadow-sm" action="/moim/question"
+                          method="POST">
+                        <h5 class="section-title">문의하기</h5>
+
+                        <input type="hidden" name="moimId" th:value="${moim.moimId}"/>
+
+                        <div class="form-group mb-3">
+                            <label for="questionContent" class="form-label">문의 내용</label>
+
+                            <hr>
+
+                            <textarea id="questionContent" name="quesContent"
+                                      class="form-control" rows="4" placeholder="문의 내용을 입력하세요..."
+                                      style="width: 100%; height: 82px;"></textarea>
+                        </div>
+
+
+                        <div class="text-end">
+                            <div th:if="${loginUser == null}">
+                                <p>
+                                    문의하려면 <a href="/login">로그인</a> 해주세요.
+                                </p>
+                            </div>
+                            <button type="submit" class="btn btn-submit"
+                                    th:if="${loginUser != null}">문의 등록
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- 문의 완료 카드 -->
+                    <div th:each="question : ${questions}"
+                         class="question-result shadow-sm mt-4">
+                        <h6 class="section-subtitle">문의 내용</h6>
+                        <p class="text-muted mb-1">
+                            문의 유저이름: <span th:text="${question.name}"></span>
+                        </p>
+                        <p class="mb-4" th:text="${question.quesContent}"></p>
+
+                        <br>
+
+                        <!-- 문의 삭제 버튼 추가 -->
+                        <div class="question-delete mt-2">
+                            <form action="/moim/question/delete" method="POST"
+                                  th:if="${loginUser != null and question.questionUserId == loginUser.userId}">
+
+                            <input type="hidden" name="moimId" th:value="${moim.moimId}" />
+                                <input type="hidden" name="quesId" th:value="${question.quesId}" />
+                                <button type="submit" style="background-color: #dc3545; color:
+                                white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                                    문의 삭제
+                                </button>
+                            </form>
+                        </div>
+
+                        <br>
+
+                        <!-- 호스트이고 + 답변이 없을 경우에만 답변 입력폼 표시 -->
+                        <div
+                                th:if="${loginUser != null and moim.userId == loginUser.userId and question.ansContent == null}">
+                            <form class="answer-form" action="/moim/answer" method="POST">
+                                <input type="hidden" name="quesId" th:value="${question.quesId}"/>
+                                <input type="hidden" name="answerUserId"
+                                       th:value="${loginUser.userId}"/> <input type="hidden"
+                                                                               name="moimId" th:value="${moim.moimId}"/>
+                                <textarea th:id="'ansContent-' + ${question.quesId}"
+                                          name="ansContent" class="form-control mb-2" rows="3"
+                                          placeholder="답변을 입력하세요..." style="width: 620px; height: 82px;"></textarea>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-answer">답변 등록</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 답변이 있을 경우 출력 -->
+                        <div th:if="${not #strings.isEmpty(question.ansContent)}" class="answer-result mt-3 p-3">
+
+                        <h6 class="section-subtitle">답변</h6>
+                            <p class="text-muted mb-1">
+                                답변 작성자 ID: <span th:text="호스트"></span>
+                            </p>
+                            <p class="mb-0" th:text="${question.ansContent}"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+
+        <div class="moim-detail-pcBox">
+            <div class="moim-title" th:text="${moim.moimTitle}"></div>
+            <div class="moim-detail-description">
+                <i class="ti ti-calendar-week"></i><span
+                    th:text="${#dates.format(moim.moimDate, 'yyyy년 MM월 dd일 a hh시 mm분')}"></span>
+            </div>
+            <div class="moim-detail-description">
+                <i class="ti ti-map"></i><span th:text="${moim.moimAddress1}"></span>
+            </div>
+            <div class="moim-detail-description">
+                <i class="ti ti-moneybag"></i>
+                <div class="moim-detail-fee"
+                     th:text="${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')} + '원'"></div>
+            </div>
+            <div id="moim-enroll-buttonBox-pc" class="moim-detail-buttonBox">
+                <button th:if="${isMoimAttendee == 0}"
+                        class="enroll-button-pc"
+                        data-context="detail" th:data-moim-id="${moim.moimId}"
+                        th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
+                        th:text="참가신청"
+                        th:disabled="${loginUser != null and loginUser.userId == moim.userId}"
+                ></button>
+
+                <button th:if="${isMoimAttendee != 0}"
+                        class="enroll-button-pc"
+                        data-context="detail" th:data-moim-id="${moim.moimId}"
+                        th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
+                        th:text="참가신청취소"
+                        th:disabled="${loginUser != null and loginUser.userId == moim.userId}"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="moim-detail-mobileBox">
+        <div class="moim-title" th:text="${moim.moimTitle}"></div>
+        <div class="moim-detail-description">
+            <i class="ti ti-calendar-week"></i><span
+                th:text="${#dates.format(moim.moimDate, 'yyyy년 MM월 dd일 a hh시 mm분')}"></span>
+        </div>
+        <div class="moim-detail-description">
+            <i class="ti ti-map"></i><span th:text="${moim.moimAddress1}"></span>
+        </div>
+        <div class="moim-detail-description">
+            <i class="ti ti-moneybag"></i>
+            <div class="moim-detail-fee"
+                 th:text="${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')} + '원'"></div>
+        </div>
+        <div id="moim-enroll-buttonBox-mobile" class="moim-enroll-buttonBox">
+            <button th:if="${isMoimAttendee == 0}"
+                    data-context="detail" th:data-moim-id="${moim.moimId}"
+                    th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
+                    th:text="참가신청">
+            </button>
+            <button th:if="${isMoimAttendee != 0}"
+                    data-context="detail" th:data-moim-id="${moim.moimId}"
+                    th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
+                    th:text="참가신청취소">
+            </button>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

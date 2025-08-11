@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div class="menu-wrapper" th:fragment="mobileMenu">
+    <div class="menu-container">
+        <div class="menu-header">
+            <div class="menu-logo logo">
+                <a href="/" target="_self">MOIDA</a>
+            </div>
+            <div class="menu-closeButton" onclick="hideMenu()">
+                <i class="ti ti-x"></i>
+            </div>
+        </div>
+        <div class="menu-content">
+            <a th:if="${loginUser != null}" href="/moim/create" target="_self" class="menu-contentBox">
+                <button type="button" class="menu-button">모임 생성하기</button>
+            </a>
+            <div class="menu-contentBox">
+                <div class="menu-title subTitle">
+                    카테고리
+                </div>
+                <div class="menu-list">
+                    <a th:each="c : ${categoryList}"
+                       th:href="@{/category/{id}(id=${c.categoryId})}" class="menu-item">
+                        <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}"
+                             alt="카테고리 이미지"/>
+                        <span th:text="${c.categoryName}"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="menu-contentBox">
+                <div class="menu-title subTitle">
+                    마이페이지
+                </div>
+                <div class="menu-list">
+                    <th:block th:if="${loginUser == null}">
+                        <a href="/sign/in" class="menu-item">
+                            로그인
+                        </a>
+                        <a href="/sign/up" class="menu-item">
+                            회원가입
+                        </a>
+                    </th:block>
+                    <th:block th:if="${loginUser != null}">
+                        <a href="/my/info" class="menu-item">
+                            회원 정보 수정
+                        </a>
+                        <a href="/my/password" class="menu-item">
+                            비밀번호 변경
+                        </a>
+                        <a href="/my/moim/hosted/list">
+                            나의 개설 모임
+                        </a>
+                        <a href="/my/moim/joined/list">
+                            나의 참여 모임
+                        </a>
+                        <a href="/my/review/list">
+                            나의 리뷰
+                        </a>
+                        <a href="/my/qna/list">
+                            나의 문의
+                        </a>
+                        <a href="/sign/out" class="menu-item">
+                            로그아웃
+                        </a>
+                    </th:block>
+                    <a href="/notice/list" class="menu-item">
+                        공지사항
+                    </a>
+                </div>
+            </div>
+            <div class="menu-contentBox" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
+                <div class="menu-title subTitle">
+                    관리자전용
+                </div>
+                <div class="menu-list">
+                    <a href="/admin/category/list" class="menu-item">
+                        카테고리 관리
+                    </a>
+                    <a href="/admin/user/list" class="menu-item">
+                        회원 관리
+                    </a>
+                    <a href="/admin/moim/list" class="menu-item">
+                        모임 관리
+                    </a>
+                    <a href="/admin/review/list" class="menu-item">
+                        리뷰 관리
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

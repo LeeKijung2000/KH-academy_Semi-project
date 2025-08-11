@@ -1,0 +1,52 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main class="" layout:fragment="content">
+    <div class="banner-container">
+        <img th:src="@{/images/home/1749630156_pc_main_banner_summersweet.png}" alt="banner"/>
+    </div>
+    <div class="main-wrapper">
+        <div class="category-container">
+            <a th:each="c : ${categoryList}"
+               th:href="@{/category/{id}(id=${c.categoryId})}" class="category-item">
+                <div class="category-item-icon">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}" alt="category-01"/>
+                </div>
+                <span th:text="${c.categoryName}"></span>
+            </a>
+        </div>
+    </div>
+    <div class="main-wrapper">
+        <div class="subTitle-container">
+             <span class="subTitle">
+            지금 핫한 모임 🎉
+        </span>
+        </div>
+
+        <div th:if="${#lists.isEmpty(moimList)}" class="empty-container">
+            <i class="ti ti-hexagon-minus empty-icon"></i> 아직 등록된 모임이 없어요!
+        </div>
+        <div class="moim-container">
+            <a th:each="m : ${moimList}" class="moim-list-item" th:href="|/moim/${m.moimId}|" target="_self">
+                <div class="moim-image">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${m.fileConvert})}" alt="moim-01"/>
+                </div>
+                <div class="moim-categoryText">
+
+                </div>
+                <div class="moim-titleText" th:text="${m.moimTitle}">
+                </div>
+                <div class="moim-dateText">
+                    <i class="ti ti-calendar-week"></i>
+                    <div th:text="${#dates.format(m.moimDate, 'yy.MM.dd(E) a hh:mm')}"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

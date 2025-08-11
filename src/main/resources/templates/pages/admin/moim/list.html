@@ -1,0 +1,53 @@
+<!-- src/main/resources/templates/layout/base.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<main class="detail-container" layout:fragment="content">
+    <div class="subTitle" style="margin-bottom: 30px;">모임 관리</div>
+
+    <div th:if="${#lists.isEmpty(moimList)}" class="empty-container">
+        <i class="ti ti-hexagon-minus empty-icon"></i> 아직 연관된 모임이 없어요!
+    </div>
+
+    <div class="my-moim-list">
+        <div class="my-moim-item" th:each="m : ${moimList}">
+            <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${m.fileConvert})}" alt="모임이미지"/>
+            <div class="my-moim-info">
+                <div class="my-moim-title" th:text="${m.moimTitle}"></div>
+                <div class="my-moim-date">
+                    <i class="ti ti-calendar-week"></i>
+                    <div th:text="${#dates.format(m.moimDate, 'yy.MM.dd(E) a hh:mm')}"></div>
+                </div>
+                <div class="my-moim-location" th:text="${m.moimAddress1}"></div>
+                <div class="my-moim-attendee" th:text="${'모집인원 : ' + m.moimAttendeeCount + '명'}"></div>
+            </div>
+            <div class="my-moim-func">
+                <a th:href="@{/moim/modify/{moimId}(moimId=${m.moimId})}">
+                    <button class="modify-button">
+                        수정
+                    </button>
+                </a>
+                <button class="cancel-button"
+                        th:onclick="|cancelMoim(${m.moimId})|">
+                    모임삭제
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(moimList)}">
+        <div th:replace="fragments/pagination :: pagination(${page}, ${size}, ${totalCount}, ${baseUrl})"></div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/backdrop :: backdrop}"></div>
+<div th:replace="~{fragments/mobileMenu :: mobileMenu}"></div>
+
+</body>
+</html>

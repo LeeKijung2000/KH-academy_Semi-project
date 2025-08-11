@@ -5,6 +5,14 @@
 **MOIDA**는 누구나 손쉽게 관심사 기반의 모임을 만들고, 참가자와 소통할 수 있는 웹 플랫폼입니다.  
 모임 생성, 참가, 리뷰, Q&A, 파일 업로드, 관리자 페이지까지 모두 구현되어 있습니다.
 
+<img width="1391" height="740" alt="image" src="https://github.com/user-attachments/assets/0557ce1c-c1f4-42ea-aaef-ce96ef58920e" />
+<img width="1215" height="695" alt="image" src="https://github.com/user-attachments/assets/2fb6b2c8-0cfc-40a1-bddc-4276c8011877" />
+<img width="1186" height="638" alt="image" src="https://github.com/user-attachments/assets/f624788b-5837-49cc-887f-c79aaf3e4185" />
+<img width="1690" height="912" alt="모이다ERD" src="https://github.com/user-attachments/assets/7ba58f87-59f5-426c-ae9e-680d52e4d030" />
+
+세미프로젝트 팀모이다에서 
+공지사항게시판과 문의답변 기능을 담당했습니다
+
 ---
 
 ## 1. 프로젝트 개요
@@ -53,12 +61,14 @@
     - BCrypt로 비밀번호 암호화
 2. **모임 관리**
     - 모임 생성, 조회, 참가, 삭제
-3. **리뷰 / Q&A**
+3. **리뷰**
     - 모임 참가자 간 리뷰 작성
+4. **Q&A / 공지사항**
     - 질문과 답변 기능
-4. **파일 업로드**
+    - 중요 공지사항 기능
+5. **파일 업로드**
     - AWS SDK를 이용한 이미지 업로드 및 조회
-5. **관리자 페이지**
+6. **관리자 페이지**
     - 공지 등록
     - 회원 관리
     - 모임 관리

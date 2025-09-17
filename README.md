@@ -19,7 +19,6 @@
 
 - **프로젝트명**: MOIDA
 - **목표**: 관심사 기반 모임 생성 및 참여, 소통이 가능한 웹 플랫폼
-- **배포 주소**: [https://moida-spring-boot.onrender.com](https://moida-spring-boot.onrender.com)
 
 ---
 
@@ -75,13 +74,4 @@
 
 ---
 
-## 5. 실행 방법
 
-```bash
-# 저장소 클론
-git clone https://github.com/moim5/moida-spring-boot.git
-cd moida-spring-boot
-
-# Gradle 빌드 및 실행
-./gradlew build
-./gradlew bootRun

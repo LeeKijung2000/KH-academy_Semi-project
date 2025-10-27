@@ -135,13 +135,6 @@
 
 ---
 
-## 📎 링크
-
-- 🔗 **Live Demo:** [https://moida-spring-boot.onrender.com](https://moida-spring-boot.onrender.com)  
-- 💻 **GitHub Repository:** [https://github.com/your-repo/moida](https://github.com/your-repo/moida)
-
----
-
 ## 🧑‍💻 팀 구성
 
 | 이름 | 역할 | 담당 기능 |

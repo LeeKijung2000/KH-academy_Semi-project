@@ -3,7 +3,6 @@
 > **세미프로젝트 | 팀 MOIDA**  
 > 담당 역할: **공지사항 게시판 및 문의·답변(대댓글) 기능 개발**
 
-[![Deploy](https://img.shields.io/badge/Demo-Live-green)](https://moida-spring-boot.onrender.com)
 
 ---
 
